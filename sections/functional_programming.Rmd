@@ -1,0 +1,70 @@
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[Functional Programming]
+]]
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/fp_intro_1.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/fp_intro_2.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/fp_intro_3.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center bg-main1 
+
+# Five Elements of Functional Programming
+
+---
+
+background-image: url("./images/fp_element_1.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+background-image: url("./images/fp_element_2.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+background-image: url("./images/fp_element_3.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+---
+
+background-image: url("./images/fp_element_4.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+---
+
+background-image: url("./images/fp_element_5.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---

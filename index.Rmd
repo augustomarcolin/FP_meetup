@@ -1,0 +1,43 @@
+---
+title: "Functional Programming"
+subtitle: ""
+author: "<br>Augusto Felix Marcolin<br>"
+date: "<br>Julho 2019"
+output:
+  xaringan::moon_reader:
+    css: ["style/shinobi.css", "ninjutsu", "style/ninpo.css"]
+    self_contained: false
+    nature: 
+      ratio: "16:9"
+      highlightStyle: monokai-sublime
+      highlightLines: true
+      countIncrementalSlides: false
+      seal: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, eval = T, warning = F, message = F, cache = F)
+```
+
+class: middle bg-main1 hide-slide-number
+
+.outline[
+## Outline
+
+* Introduction
+* Functional Programming
+* Purrr
+* Demo
+]
+
+---
+
+```{r Intro, child='sections/introduction.Rmd'}
+```
+
+```{r FP, child='sections/functional_programming.Rmd'}
+```
+
+```{r FP, child='sections/purrr.Rmd'}
+```

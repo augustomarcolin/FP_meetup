@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Functional Programming</title>
+    <meta charset="utf-8">
+    <meta name="author" content=" Augusto Felix Marcolin" />
+    <link href="index_files/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="style/ninpo.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Functional Programming
+### <br>Augusto Felix Marcolin<br>
+### <br>Julho 2019
+
+---
+
+
+
+
+class: middle bg-main1 hide-slide-number
+
+.outline[
+## Outline
+
+* Introduction
+* Functional Programming
+* Purrr
+* Demo
+]
+
+---
+
+
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[Introduction]
+]]
+
+---
+
+
+
+
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[Functional Programming]
+]]
+
+---
+
+class: middle center
+&lt;div align = "center"&gt;
+&lt;img src="./images/fp_intro_1.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+
+class: middle center
+&lt;div align = "center"&gt;
+&lt;img src="./images/fp_intro_2.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+
+class: middle center
+&lt;div align = "center"&gt;
+&lt;img src="./images/fp_intro_3.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+
+class: middle center bg-main1 
+
+# Five Elements of Functional Programming
+
+---
+
+background-image: url("./images/fp_element_1.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+background-image: url("./images/fp_element_2.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+background-image: url("./images/fp_element_3.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+---
+
+background-image: url("./images/fp_element_4.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+---
+
+background-image: url("./images/fp_element_5.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+.img-fill[![](images/purrr.png)]
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[purrr]
+]]
+
+---
+
+background-image: url("./images/three_dragons_meme.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+class: middle center
+&lt;div align = "center"&gt;
+&lt;img src="./images/map.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+# Lendo Arquivos: `for` Raizera
+
+
+```r
+files &lt;- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T) #listando arquivos
+
+list_tables &lt;- list() # criando variavel
+
+for (i in 1:length(files)) {
+  
+list_tables[[i]] &lt;- read.csv(files[i])
+
+}
+```
+
+---
+
+# Lendo Arquivos: `map` Topzera
+
+
+
+```r
+library(dplyr)
+library(purrr)
+
+files &lt;- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T) #listando arquivos
+
+list_tables2 &lt;- map(files, read.csv)
+
+identical(list_tables, list_tables2) # checando se sao identicos
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+# Classes Elementos
+
+
+
+```r
+class(list_tables2)
+```
+
+```
+## [1] "list"
+```
+
+--
+
+# `map_`
+
+
+```r
+list_tables3 &lt;- map_df(files, read.csv, stringsAsFactors = F)
+
+class(list_tables3)
+```
+
+```
+## [1] "data.frame"
+```
+
+---
+
+# Múltiplos argumentos
+
+
+```r
+files &lt;- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T)
+
+list_tables4 &lt;- map(files, read.csv, stringsAsFactors = F) # multiplos argumentos
+```
+
+---
+
+# til(`~`) malandro
+
+
+```r
+list_tables4 &lt;- map(files, ~read.csv(., stringsAsFactors = F)) # mesma coisa
+```
+
+
+---
+class: middle center bg-main1 
+
+# Múltiplos argumentos variáveis
+
+---
+class: middle center
+
+&lt;div align = "center"&gt;
+&lt;img src="./images/map2.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+
+# Stock Prices
+
+
+```r
+stock_prices &lt;- readRDS('../data/stock_prices.rds')
+
+glimpse(stock_prices)
+```
+
+```
+## Observations: 1,464
+## Variables: 10
+## $ price_open          &lt;dbl&gt; 19.95, 19.62, 19.59, 19.99, 21.40, 21.15, ...
+## $ price_high          &lt;dbl&gt; 20.10, 19.79, 20.01, 20.78, 21.55, 21.47, ...
+## $ price_low           &lt;dbl&gt; 19.70, 19.47, 19.54, 19.95, 21.09, 20.98, ...
+## $ price_close         &lt;dbl&gt; 19.89, 19.72, 20.01, 20.41, 21.11, 21.04, ...
+## $ volume              &lt;dbl&gt; 37053900, 38641200, 39141700, 69008900, 86...
+## $ price_adjusted      &lt;dbl&gt; 19.01899, 18.85643, 19.13373, 19.51622, 20...
+## $ ref_date            &lt;date&gt; 2018-07-30, 2018-07-31, 2018-08-01, 2018-...
+## $ ticker              &lt;chr&gt; "PETR4.SA", "PETR4.SA", "PETR4.SA", "PETR4...
+## $ ret_adjusted_prices &lt;dbl&gt; NA, -0.008547142, 0.014705857, 0.019990141...
+## $ ret_closing_prices  &lt;dbl&gt; NA, -0.008547009, 0.014705934, 0.019990005...
+```
+
+--
+
+
+```r
+unique(stock_prices$ticker)
+```
+
+```
+## [1] "PETR4.SA" "ABEV3.SA" "VVAR3.SA" "ITSA4.SA" "USIM5.SA" "SUZB3.SA"
+```
+
+---
+
+# `map2()`
+
+
+```r
+files_name &lt;- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
+
+stock_prices %&gt;% 
+  split(., .$ticker) %&gt;% 
+  map2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
+```
+
+```
+## $ABEV3.SA
+## NULL
+## 
+## $ITSA4.SA
+## NULL
+## 
+## $PETR4.SA
+## NULL
+## 
+## $SUZB3.SA
+## NULL
+## 
+## $USIM5.SA
+## NULL
+## 
+## $VVAR3.SA
+## NULL
+```
+
+---
+
+# `walk()` | `walk2()`
+
+
+```r
+files_name &lt;- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
+
+stock_prices %&gt;% 
+  split(., .$ticker) %&gt;% 
+  walk2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
+```
+
+---
+
+class: middle center bg-main1 
+
+# Recursividade
+
+---
+
+class: middle center
+
+&lt;div align = "center"&gt;
+&lt;img src="./images/reduce.png" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+
+---
+
+
+
+
+```r
+glimpse(time)
+```
+
+```
+## Observations: 3
+## Variables: 2
+## $ jogador &lt;fct&gt; Fernandão, Braian Rodriguez, Claudio Milar
+## $ time    &lt;fct&gt; Inter, Grêmio, Brasil-pel
+```
+
+```r
+glimpse(altura)
+```
+
+```
+## Observations: 3
+## Variables: 2
+## $ jogador &lt;fct&gt; Fernandão, Braian Rodriguez, Claudio Milar
+## $ altura  &lt;fct&gt; 1.90, 1.93, 1.78
+```
+
+```r
+glimpse(gols)
+```
+
+```
+## Observations: 3
+## Variables: 2
+## $ jogador &lt;fct&gt; Fernandão, Braian Rodriguez, Claudio Milar
+## $ gols    &lt;fct&gt; 225, 69, 187
+```
+
+---
+
+
+```r
+df &lt;- time %&gt;% 
+  left_join(altura, by = 'jogador') %&gt;% 
+  left_join(gols, by = 'jogador')
+
+df
+```
+
+```
+##            jogador       time altura gols
+## 1        Fernandão      Inter   1.90  225
+## 2 Braian Rodriguez     Grêmio   1.93   69
+## 3    Claudio Milar Brasil-pel   1.78  187
+```
+
+---
+
+
+```r
+tabelas &lt;- list(time, altura, gols)
+
+df_2 &lt;- reduce(tabelas, left_join, by = 'jogador')
+
+df_2
+```
+
+```
+##            jogador       time altura gols
+## 1        Fernandão      Inter   1.90  225
+## 2 Braian Rodriguez     Grêmio   1.93   69
+## 3    Claudio Milar Brasil-pel   1.78  187
+```
+
+
+---
+
+class: middle center bg-main1 
+
+# Demo
+
+&lt;div align = "center"&gt;
+&lt;img src="./images/demo.gif" height="100%" width="100%"/&gt;
+&lt;/div&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "monokai-sublime",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"seal": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

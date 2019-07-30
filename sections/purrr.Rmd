@@ -1,0 +1,226 @@
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+.img-fill[![](images/purrr.png)]
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[purrr]
+]]
+
+---
+
+background-image: url("./images/three_dragons_meme.png")
+background-position: 50% 50%
+background-size: cover
+class: center, bottom, inverse
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/map.png" height="100%" width="100%"/>
+</div>
+
+---
+# Lendo Arquivos: `for` Raizera
+
+```{r echo = T}
+
+files <- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T) #listando arquivos
+
+list_tables <- list() # criando variavel
+
+for (i in 1:length(files)) {
+  
+list_tables[[i]] <- read.csv(files[i])
+
+}
+
+```
+
+---
+
+# Lendo Arquivos: `map` Topzera
+
+
+```{r echo = T}
+library(dplyr)
+library(purrr)
+
+files <- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T) #listando arquivos
+
+list_tables2 <- map(files, read.csv)
+
+identical(list_tables, list_tables2) # checando se sao identicos
+```
+
+---
+
+# Classes Elementos
+
+
+```{r echo = T}
+
+class(list_tables2)
+```
+
+--
+
+# `map_`
+
+```{r echo = T}
+list_tables3 <- map_df(files, read.csv, stringsAsFactors = F)
+
+class(list_tables3)
+
+```
+
+---
+
+# Múltiplos argumentos
+
+```{r echo = T}
+files <- list.files('../data/',
+                    pattern = 'file',
+                    full.names = T)
+
+list_tables4 <- map(files, read.csv, stringsAsFactors = F) # multiplos argumentos
+
+```
+
+---
+
+# til(`~`) malandro
+
+```{r echo = T, eval = F}
+list_tables4 <- map(files, ~read.csv(., stringsAsFactors = F)) # mesma coisa
+```
+
+
+---
+class: middle center bg-main1 
+
+# Múltiplos argumentos variáveis
+
+---
+class: middle center
+
+<div align = "center">
+<img src="./images/map2.png" height="100%" width="100%"/>
+</div>
+
+---
+
+# Stock Prices
+
+```{r echo = T}
+
+stock_prices <- readRDS('../data/stock_prices.rds')
+
+glimpse(stock_prices)
+
+```
+
+--
+
+```{r echo = T}
+unique(stock_prices$ticker)
+```
+
+---
+
+# `map2()`
+
+```{r echo = T}
+
+files_name <- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
+
+stock_prices %>% 
+  split(., .$ticker) %>% 
+  map2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
+
+```
+
+---
+
+# `walk()` | `walk2()`
+
+```{r echo = T}
+
+files_name <- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
+
+stock_prices %>% 
+  split(., .$ticker) %>% 
+  walk2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
+
+```
+
+---
+
+class: middle center bg-main1 
+
+# Recursividade
+
+---
+
+class: middle center
+
+<div align = "center">
+<img src="./images/reduce.png" height="100%" width="100%"/>
+</div>
+
+---
+
+```{r echo = F}
+
+time <- data.frame("jogador" = c("Fernandão", "Braian Rodriguez", "Claudio Milar"),
+                   "time" = c("Inter", "Grêmio", "Brasil-pel"))
+
+altura <- data.frame("jogador" = c("Fernandão", "Braian Rodriguez", "Claudio Milar"),
+                     "altura" = c("1.90", "1.93", "1.78"))
+
+gols <- data.frame("jogador" = c("Fernandão", "Braian Rodriguez", "Claudio Milar"),
+                   "gols" = c("225", "69", "187"))
+```
+
+```{r echo = T}
+glimpse(time)
+glimpse(altura)
+glimpse(gols)
+```
+
+---
+
+```{r echo = T}
+df <- time %>% 
+  left_join(altura, by = 'jogador') %>% 
+  left_join(gols, by = 'jogador')
+
+df
+```
+
+---
+
+```{r echo = T}
+tabelas <- list(time, altura, gols)
+
+df_2 <- reduce(tabelas, left_join, by = 'jogador')
+
+df_2
+```
+
+
+---
+
+class: middle center bg-main1 
+
+# Demo
+
+<div align = "center">
+<img src="./images/demo.gif" height="100%" width="100%"/>
+</div>

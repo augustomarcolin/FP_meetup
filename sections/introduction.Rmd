@@ -1,0 +1,12 @@
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[Introduction]
+]]
+
+---
+
+
