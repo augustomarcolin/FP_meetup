@@ -1,6 +1,7 @@
 library(purrr)
 library(ggplot2)
-#library(showtext) # pacote para pegar um fonte balaqueira
+library(dplyr)
+library(showtext) # pacote para pegar um fonte balaqueira
 
 font_add_google("Montserrat", "Montserrat")
 
@@ -95,5 +96,5 @@ plot_stock <- function(df){
 }
 
 plots <- df1 %>% 
-  split(.$ticker) %>% 
+  group_split(ticker) %>% 
   map(plot_stock)

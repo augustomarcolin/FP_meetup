@@ -141,7 +141,7 @@ unique(stock_prices$ticker)
 files_name <- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
 
 stock_prices %>% 
-  split(., .$ticker) %>% 
+  group_split(ticker) %>% 
   map2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
 
 ```
@@ -155,7 +155,7 @@ stock_prices %>%
 files_name <- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
 
 stock_prices %>% 
-  split(., .$ticker) %>% 
+  group_split(ticker) %>% 
   walk2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
 
 ```

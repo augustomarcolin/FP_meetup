@@ -304,16 +304,16 @@ glimpse(stock_prices)
 ```
 ## Observations: 1,464
 ## Variables: 10
-## $ price_open          &lt;dbl&gt; 19.95, 19.62, 19.59, 19.99, 21.40, 21.15, ...
-## $ price_high          &lt;dbl&gt; 20.10, 19.79, 20.01, 20.78, 21.55, 21.47, ...
-## $ price_low           &lt;dbl&gt; 19.70, 19.47, 19.54, 19.95, 21.09, 20.98, ...
-## $ price_close         &lt;dbl&gt; 19.89, 19.72, 20.01, 20.41, 21.11, 21.04, ...
-## $ volume              &lt;dbl&gt; 37053900, 38641200, 39141700, 69008900, 86...
-## $ price_adjusted      &lt;dbl&gt; 19.01899, 18.85643, 19.13373, 19.51622, 20...
-## $ ref_date            &lt;date&gt; 2018-07-30, 2018-07-31, 2018-08-01, 2018-...
-## $ ticker              &lt;chr&gt; "PETR4.SA", "PETR4.SA", "PETR4.SA", "PETR4...
-## $ ret_adjusted_prices &lt;dbl&gt; NA, -0.008547142, 0.014705857, 0.019990141...
-## $ ret_closing_prices  &lt;dbl&gt; NA, -0.008547009, 0.014705934, 0.019990005...
+## $ price_open          &lt;dbl&gt; 19.95, 19.62, 19.59, 19.99, 21.40, 21.15, 21…
+## $ price_high          &lt;dbl&gt; 20.10, 19.79, 20.01, 20.78, 21.55, 21.47, 21…
+## $ price_low           &lt;dbl&gt; 19.70, 19.47, 19.54, 19.95, 21.09, 20.98, 20…
+## $ price_close         &lt;dbl&gt; 19.89, 19.72, 20.01, 20.41, 21.11, 21.04, 20…
+## $ volume              &lt;dbl&gt; 37053900, 38641200, 39141700, 69008900, 8690…
+## $ price_adjusted      &lt;dbl&gt; 19.01899, 18.85643, 19.13373, 19.51622, 20.1…
+## $ ref_date            &lt;date&gt; 2018-07-30, 2018-07-31, 2018-08-01, 2018-08…
+## $ ticker              &lt;chr&gt; "PETR4.SA", "PETR4.SA", "PETR4.SA", "PETR4.S…
+## $ ret_adjusted_prices &lt;dbl&gt; NA, -0.008547142, 0.014705857, 0.019990141, …
+## $ ret_closing_prices  &lt;dbl&gt; NA, -0.008547009, 0.014705934, 0.019990005, …
 ```
 
 --
@@ -336,27 +336,27 @@ unique(stock_prices$ticker)
 files_name &lt;- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
 
 stock_prices %&gt;% 
-  split(., .$ticker) %&gt;% 
+  group_split(ticker) %&gt;% 
   map2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
 ```
 
 ```
-## $ABEV3.SA
+## [[1]]
 ## NULL
 ## 
-## $ITSA4.SA
+## [[2]]
 ## NULL
 ## 
-## $PETR4.SA
+## [[3]]
 ## NULL
 ## 
-## $SUZB3.SA
+## [[4]]
 ## NULL
 ## 
-## $USIM5.SA
+## [[5]]
 ## NULL
 ## 
-## $VVAR3.SA
+## [[6]]
 ## NULL
 ```
 
@@ -366,10 +366,12 @@ stock_prices %&gt;%
 
 
 ```r
+library(dplyr)
+
 files_name &lt;- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
 
 stock_prices %&gt;% 
-  split(., .$ticker) %&gt;% 
+  group_split(ticker) %&gt;% 
   walk2(.x = ., .y = files_name, ~write.csv(x = .x, file = .y))
 ```
 
