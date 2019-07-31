@@ -24,12 +24,13 @@ class: middle bg-main1
   </div>
 
 ---
+
 class: middle center bg-main1 
 
 # Demo
 
 <div align = "center">
-<img src="./images/demo.gif" height="100%" width="100%"/>
+<img src="./images/demo.gif" height="50%" width="50%"/>
 </div>
 
 ---
