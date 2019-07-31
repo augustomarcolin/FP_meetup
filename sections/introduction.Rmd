@@ -9,4 +9,30 @@ class: bg-main1 split-30 hide-slide-number
 
 ---
 
+class: middle center
+<div align = "center">
+<img src="./images/intro_me_1.png" height="100%" width="100%"/>
+</div>
 
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/intro_me_2.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/intro_me_3.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/intro_me_4.png" height="100%" width="100%"/>
+</div>
+
+---

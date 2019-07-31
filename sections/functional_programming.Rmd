@@ -11,23 +11,36 @@ class: bg-main1 split-30 hide-slide-number
 
 class: middle center
 <div align = "center">
-<img src="./images/fp_intro_1.png" height="100%" width="100%"/>
+<img src="./images/intro_1.png" height="100%" width="100%"/>
 </div>
 
 ---
 
 class: middle center
 <div align = "center">
-<img src="./images/fp_intro_2.png" height="100%" width="100%"/>
+<img src="./images/intro_2.png" height="100%" width="100%"/>
 </div>
 
 ---
 
 class: middle center
 <div align = "center">
-<img src="./images/fp_intro_3.png" height="100%" width="100%"/>
+<img src="./images/intro_3.png" height="100%" width="100%"/>
 </div>
 
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/intro_4.png" height="100%" width="100%"/>
+</div>
+
+---
+
+class: middle center
+<div align = "center">
+<img src="./images/intro_5.png" height="100%" width="100%"/>
+</div>
 ---
 
 class: middle center bg-main1 

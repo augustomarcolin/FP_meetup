@@ -214,13 +214,4 @@ df_2 <- reduce(tabelas, left_join, by = 'jogador')
 df_2
 ```
 
-
 ---
-
-class: middle center bg-main1 
-
-# Demo
-
-<div align = "center">
-<img src="./images/demo.gif" height="100%" width="100%"/>
-</div>

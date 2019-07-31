@@ -1,0 +1,20 @@
+class: bg-main1 split-30 hide-slide-number
+
+.column.bg-main3[
+]
+.column.slide-in-right[
+.sliderbox.bg-main2.vmiddle[
+.font3[Conclusion]
+]]
+
+---
+
+
+---
+class: middle center bg-main1 
+
+# Demo
+
+<div align = "center">
+<img src="./images/demo.gif" height="100%" width="100%"/>
+</div>
