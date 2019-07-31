@@ -41,3 +41,6 @@ class: middle bg-main1 hide-slide-number
 
 ```{r FP, child='sections/purrr.Rmd'}
 ```
+
+```{r FP, child='sections/conclusion.Rmd'}
+```

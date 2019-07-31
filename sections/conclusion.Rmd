@@ -8,7 +8,20 @@ class: bg-main1 split-30 hide-slide-number
 ]]
 
 ---
+class: middle bg-main1
 
+<center>
+<h2> Considerações FP/purrr: </h2> 
+</center>
+
+<div class = "bullet2">
+  <ul>
+  <li> Por vezes, mais rápido </li>
+  <li> Sucinto </li>
+  <li> Elegante </li>
+  <li> Fácil de Ler e Debugar </li>
+  </ul>
+  </div>
 
 ---
 class: middle center bg-main1 
@@ -18,3 +31,15 @@ class: middle center bg-main1
 <div align = "center">
 <img src="./images/demo.gif" height="100%" width="100%"/>
 </div>
+
+---
+
+class: bg-main5 middle center
+
+<div align = "center">
+<img src="./images/qr_code.png" height="30%" width="30%"/>
+</div>
+
+## [`r icon::fa_envelope_open()`](mailto:augustomarcolin@gmail.com) augustomarcolin@gmail.com
+## [`r icon::fa_github()`](https://github.com/augustomarcolin) https://github.com/augustomarcolin
+## [`r icon::fa_linkedin()`](https://www.linkedin.com/in/augusto-marcolin-1114a1b5) https://www.linkedin.com/in/augusto-marcolin-1114a1b5
