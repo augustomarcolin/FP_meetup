@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Functional Programming</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content=" Augusto Felix Marcolin" />
     <link href="index_files/remark-css/ninjutsu.css" rel="stylesheet" />
     <link href="index_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style/shinobi.css" type="text/css" />
-    <link rel="stylesheet" href="style/ninpo.css" type="text/css" />
+    <link rel="stylesheet" href="style\shinobi.css" type="text/css" />
+    <link rel="stylesheet" href="style\ninpo.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -134,6 +134,24 @@ class: center, bottom, inverse
 
 ---
 
+
+```r
+y &lt;- c(4, 4, 4, 4)
+
+my_print &lt;- function(x)
+{
+  print(x)
+}
+
+my_print(y)
+```
+
+```
+## [1] 4 4 4 4
+```
+
+---
+
 background-image: url("./images/fp_element_2.png")
 background-position: 50% 50%
 background-size: cover
@@ -141,22 +159,152 @@ class: center, bottom, inverse
 
 ---
 
+
+```r
+fatorial &lt;- function(x)
+{
+  fatorial &lt;- 1
+  
+  if(x == 0)
+  {
+    return(fatorial)
+  }else{
+    for(i in 1:x){
+      fatorial = fatorial * i
+    }
+    return(fatorial)
+  }
+  
+}
+
+fatorial(5)
+```
+
+```
+## [1] 120
+```
+
+---
+
+
+```r
+recursive_factorial &lt;- function(x) {
+  if (x == 0){
+    return (1)
+  }else{
+    return (x * recursive_factorial(x-1))
+  }
+}
+
+recursive_factorial(5)
+```
+
+```
+## [1] 120
+```
+
+---
+
 background-image: url("./images/fp_element_3.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+
+---
+
+
+```r
+area &lt;- function(r) {
+  pi * r^2
+}
+
+x &lt;- area(3) + area(4)
+
+y &lt;- (pi * 3^2) + (pi * 4^2)
+
+identical(x, y)
+```
+
+```
+## [1] TRUE
+```
+
 ---
 
 background-image: url("./images/fp_element_4.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+---
+
+
+```r
+# first order
+
+my_print &lt;- function(x)
+{
+  print(x)
+}
+```
+
+--
+
+
+```r
+# high order
+
+args(round)
+```
+
+```
+## function (x, digits = 0) 
+## NULL
+```
+
+```r
+to_percentual &lt;- function(x, FUN = round, ...)
+{
+  percent &lt;- FUN(x * 100, ...)
+  
+  paste0(percent, "%")
+}
+
+to_percentual(0.1, digits = 2)
+```
+
+```
+## [1] "10%"
+```
+
 ---
 
 background-image: url("./images/fp_element_5.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+---
+
+
+```r
+library(pryr)
+
+a &lt;- 1
+
+end_1 &lt;- address(a)
+
+a &lt;- 7
+
+end_2 &lt;- address(a)
+
+identical(end_1, end_2)
+```
+
+```
+## [1] FALSE
+```
 
 ---
 
@@ -304,16 +452,16 @@ glimpse(stock_prices)
 ```
 ## Observations: 1,464
 ## Variables: 10
-## $ price_open          &lt;dbl&gt; 19.95, 19.62, 19.59, 19.99, 21.40, 21.15, 21…
-## $ price_high          &lt;dbl&gt; 20.10, 19.79, 20.01, 20.78, 21.55, 21.47, 21…
-## $ price_low           &lt;dbl&gt; 19.70, 19.47, 19.54, 19.95, 21.09, 20.98, 20…
-## $ price_close         &lt;dbl&gt; 19.89, 19.72, 20.01, 20.41, 21.11, 21.04, 20…
-## $ volume              &lt;dbl&gt; 37053900, 38641200, 39141700, 69008900, 8690…
-## $ price_adjusted      &lt;dbl&gt; 19.01899, 18.85643, 19.13373, 19.51622, 20.1…
-## $ ref_date            &lt;date&gt; 2018-07-30, 2018-07-31, 2018-08-01, 2018-08…
-## $ ticker              &lt;chr&gt; "PETR4.SA", "PETR4.SA", "PETR4.SA", "PETR4.S…
-## $ ret_adjusted_prices &lt;dbl&gt; NA, -0.008547142, 0.014705857, 0.019990141, …
-## $ ret_closing_prices  &lt;dbl&gt; NA, -0.008547009, 0.014705934, 0.019990005, …
+## $ price_open          &lt;dbl&gt; 19.95, 19.62, 19.59, 19.99, 21.40, 21.15, ...
+## $ price_high          &lt;dbl&gt; 20.10, 19.79, 20.01, 20.78, 21.55, 21.47, ...
+## $ price_low           &lt;dbl&gt; 19.70, 19.47, 19.54, 19.95, 21.09, 20.98, ...
+## $ price_close         &lt;dbl&gt; 19.89, 19.72, 20.01, 20.41, 21.11, 21.04, ...
+## $ volume              &lt;dbl&gt; 37053900, 38641200, 39141700, 69008900, 86...
+## $ price_adjusted      &lt;dbl&gt; 19.01899, 18.85643, 19.13373, 19.51622, 20...
+## $ ref_date            &lt;date&gt; 2018-07-30, 2018-07-31, 2018-08-01, 2018-...
+## $ ticker              &lt;chr&gt; "PETR4.SA", "PETR4.SA", "PETR4.SA", "PETR4...
+## $ ret_adjusted_prices &lt;dbl&gt; NA, -0.008547142, 0.014705857, 0.019990141...
+## $ ret_closing_prices  &lt;dbl&gt; NA, -0.008547009, 0.014705934, 0.019990005...
 ```
 
 --
@@ -366,8 +514,6 @@ stock_prices %&gt;%
 
 
 ```r
-library(dplyr)
-
 files_name &lt;- sprintf('../data/prices_%s.csv', unique(stock_prices$ticker))
 
 stock_prices %&gt;% 
@@ -513,6 +659,7 @@ class: bg-main5 middle center
 ## [<i class="fab  fa-github "></i>](https://github.com/augustomarcolin) https://github.com/augustomarcolin
 ## [<i class="fab  fa-linkedin "></i>](https://www.linkedin.com/in/augusto-marcolin-1114a1b5) https://www.linkedin.com/in/augusto-marcolin-1114a1b5
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "ratio": "16:9",
@@ -524,16 +671,57 @@ class: bg-main5 middle center
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
 })();</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -547,7 +735,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

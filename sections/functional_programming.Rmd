@@ -56,6 +56,19 @@ class: center, bottom, inverse
 
 ---
 
+```{r echo = T}
+y <- c(4, 4, 4, 4)
+
+my_print <- function(x)
+{
+  print(x)
+}
+
+my_print(y)
+```
+
+---
+
 background-image: url("./images/fp_element_2.png")
 background-position: 50% 50%
 background-size: cover
@@ -63,21 +76,126 @@ class: center, bottom, inverse
 
 ---
 
+```{r echo = TRUE}
+
+fatorial <- function(x)
+{
+  fatorial <- 1
+  
+  if(x == 0)
+  {
+    return(fatorial)
+  }else{
+    for(i in 1:x){
+      fatorial = fatorial * i
+    }
+    return(fatorial)
+  }
+  
+}
+
+fatorial(5)
+```
+
+---
+
+```{r echo = TRUE}
+
+recursive_factorial <- function(x) {
+  if (x == 0){
+    return (1)
+  }else{
+    return (x * recursive_factorial(x-1))
+  }
+}
+
+recursive_factorial(5)
+
+```
+
+---
+
 background-image: url("./images/fp_element_3.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+
+---
+
+```{r echo = TRUE}
+
+area <- function(r) {
+  pi * r^2
+}
+
+x <- area(3) + area(4)
+
+y <- (pi * 3^2) + (pi * 4^2)
+
+identical(x, y)
+
+```
+
 ---
 
 background-image: url("./images/fp_element_4.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+---
+
+```{r echo = T}
+
+# first order
+
+my_print <- function(x)
+{
+  print(x)
+}
+
+```
+
+--
+
+```{r echo = T}
+# high order
+
+args(round)
+
+to_percentual <- function(x, FUN = round, ...)
+{
+  percent <- FUN(x * 100, ...)
+  
+  paste0(percent, "%")
+}
+
+to_percentual(0.1, digits = 2)
+
+```
+
 ---
 
 background-image: url("./images/fp_element_5.png")
 background-position: 50% 50%
 background-size: cover
 class: center, bottom, inverse
+
+---
+
+```{r echo = T}
+library(pryr)
+
+a <- 1
+
+end_1 <- address(a)
+
+a <- 7
+
+end_2 <- address(a)
+
+identical(end_1, end_2)
+```
 
 ---

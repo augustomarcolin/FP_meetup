@@ -39,8 +39,8 @@ class: middle bg-main1 hide-slide-number
 ```{r FP, child='sections/functional_programming.Rmd'}
 ```
 
-```{r FP, child='sections/purrr.Rmd'}
+```{r purrr, child='sections/purrr.Rmd'}
 ```
 
-```{r FP, child='sections/conclusion.Rmd'}
+```{r conclusion, child='sections/conclusion.Rmd'}
 ```
